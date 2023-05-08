@@ -1,0 +1,17 @@
+version: "3.4"
+services:
+  giftless:
+    image: datopian/giftless
+    container_name: giftless
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./lfs:/lfs-storage
+      - ./giftless-config.yml:/app/giftless-config.yml
+      - ./giftless.key.pub:/app/giftless.key.pub
+      - ./giftless.key:/app/giftless.key
+      - ./generate-token.sh:/app/generate-token.sh
+    environment:
+      GIFTLESS_CONFIG_FILE: /app/giftless-config.yml
+      # GIFTLESS_DEBUG: 1
+    command: "-M -T --threads 2 -p 2 --manage-script-name --callable app --http 0.0.0.0:8080"

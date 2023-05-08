@@ -1,0 +1,6 @@
+AUTH_PROVIDERS:
+  - factory: giftless.auth.jwt:factory
+    options: 
+      algorithm: RS256
+      public_key_file: giftless.key.pub
+  - giftless.auth.allow_anon:read_only # MUST be after authenticated providers to not override
