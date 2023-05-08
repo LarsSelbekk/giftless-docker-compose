@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  giftless:
+    image: datopian/giftless
+    container_name: giftless
+    volumes:
+      - /mnt/user/appdata/giftless:/lfs-storage
+      - ./giftless-config.yml:/app/giftless-config.yml
+      - ./giftless.key.pub:/app/giftless.key.pub
+      - ./giftless.key:/app/giftless.key
+      - ./generate-token.sh:/app/generate-token.sh
+    environment:
+      GIFTLESS_CONFIG_FILE: /app/giftless-config.yml
+      # GIFTLESS_DEBUG: 1
+    command: "-M -T --threads 2 -p 2 --manage-script-name --callable app --http 0.0.0.0:8080"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    depends_on:
+      volume-ownership-fixer:
+        condition: service_completed_successfully
+    networks:
+      - reverse-proxy
+
+  volume-ownership-fixer:
+    image: datopian/giftless
+    volumes:
+      - /mnt/user/appdata/giftless:/lfs-storage
+      - ./volume-ownership-fixer.sh:/app/volume-ownership-fixer.sh
+    user: root
+    entrypoint: ["/bin/bash"]
+    command: "./volume-ownership-fixer.sh"
+
+networks:
+  reverse-proxy:
+    external: true

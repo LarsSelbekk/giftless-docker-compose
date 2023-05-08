@@ -1,5 +1,5 @@
 # Giftless
-Set up using `./generate-key.sh`. `docker compose up -d`. To generate token, `docker compose run giftless ./generate-token.sh username namespace/repo`.
+Set up using `./generate-key.sh`. `docker compose up -d`. To generate token, `docker compose run giftless ./generate-token.sh username namespace/repo`. The file `docker-compose.bifrost.yml` shows a setup behind a reverse-proxy with mount working on Unix-like systems. To exclusively use that, `COMPOSE_FILE=docker-compose.bifrost.yml` can be added to a file `.env`.
 
 To use this lfs server, add to .lfsconfig in the client repo (change to your LFS URL and remote name):
 
@@ -12,4 +12,4 @@ lfsurl = http://localhost:8080/larsselbekk/self-hosted-lfs-server
     locksverify = false
 ```
 
-On first push, you will be required to input credentials, which will be username "\_jwt" with the token as password.
+When pulling, you can leave both username and password blank, as anonymous reading is allowed. This might be a security issue on private repositories. On first push, you will be required to input credentials, which will be username "\_jwt" with the token as password. Afterwards, git credential manager should remember the credentials.
