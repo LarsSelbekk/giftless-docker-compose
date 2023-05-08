@@ -11,3 +11,5 @@ lfsurl = http://localhost:8080/larsselbekk/self-hosted-lfs-server
     access = basic
     locksverify = false
 ```
+
+On first push, you will be required to input credentials, which will be username "\_jwt" with the token as password.
