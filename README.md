@@ -1,5 +1,5 @@
 # Giftless
-Set up using `./generate-key.sh`. `docker compose up -d`. To generate token, `docker compose run giftless ./generate-token.sh username namespace/repo`. The file `docker-compose.bifrost.yml` shows a setup behind a reverse-proxy with mount working on Unix-like systems. To exclusively use that, `COMPOSE_FILE=docker-compose.bifrost.yml` can be added to a file `.env`.
+Set up using `./generate-key.sh`. `docker compose up -d`. To generate token, `docker compose run giftless python generate-token.py scope1 scope2 scope3`. The file `docker-compose.bifrost.yml` shows a setup behind a reverse-proxy with mount working on Unix-like systems. To exclusively use that, `COMPOSE_FILE=docker-compose.bifrost.yml` can be added to a file `.env`.
 
 To use this lfs server, add to .lfsconfig in the client repo (change to your LFS URL and remote name):
 

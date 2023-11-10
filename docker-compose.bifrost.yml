@@ -8,7 +8,7 @@ services:
       - ./giftless-config.yml:/app/giftless-config.yml
       - ./giftless.key.pub:/app/giftless.key.pub
       - ./giftless.key:/app/giftless.key
-      - ./generate-token.sh:/app/generate-token.sh
+      - ./generate-token.py:/app/generate-token.py
     environment:
       GIFTLESS_CONFIG_FILE: /app/giftless-config.yml
       # GIFTLESS_DEBUG: 1
